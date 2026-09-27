@@ -1,0 +1,18 @@
+from fastmcp import FastMCP
+
+mcp = FastMCP()
+
+@mcp.tool()
+async def fetch_http():
+    ''' use this tool to fetch data from a source.'''
+
+    return {"data": "Hello mcp"} 
+
+@mcp.tool()
+async def process_http(path:str):
+
+    return{"processed_data": "data has been processed! at path" + path}
+
+if __name__ == "__main__":
+# http transport
+    mcp.run(transport = "streamable-http", host="0.0.0.0",port=8050)
